@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mi-aplicacion
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mi-aplicacion
+  template:
+    metadata:
+      labels:
+        app: mi-aplicacion
+    spec:
+      containers:
+        - name: mi-aplicacion
+          image: leanbogado/mi_app:1.0.0
+          ports:
+            - containerPort: 5000
+          # Agrega cualquier otra configuración necesaria para tu aplicación
+      rollbackTo:
+        # Especifica la revisión a la que deseas realizar un rollback
+        revision: 2
+      # Otras configuraciones del Deployment...
